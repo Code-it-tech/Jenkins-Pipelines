@@ -1,0 +1,26 @@
+pipeline {
+ agent any {
+    stages {
+       stage ('Checkout') 
+        {
+         git  'https://github.com/smendiratta410/Jenkins-Pipeline-Testing/new/master'
+        }  
+       stage ('Build') 
+        {
+          sh "${mvnhome/bin/mvn  clean package -Dmaven.test.skip=true}"
+         }  
+          
+       stage ('Test-Junit') 
+        {
+          sh "'{mvnhome/bin/mvn'  test surefire-report:report"
+         }  
+       
+       stage ('Deploy') 
+        {
+          sshagent(['Tomcat-jenkins'])
+          sh 'scp -o StrictHostKeyChecking=no target/tomcatdeploymnetdemo.war jenkins@35.193.54.220:/opt/tomcat/webapps'
+         }  
+       
+          
+        
+     
