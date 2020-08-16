@@ -1,0 +1,72 @@
+import groovy.json.JsonOutput
+
+pipeline {
+    agent any
+
+   stages {
+
+     stage('Pull content') {
+      steps {
+      echo "DEPLOYING CLOUD INFRA | Job: ${env.JOB_NAME} | Build number ${env.BUILD_NUMBER}"
+      git 'git@bitbucket.org:/XXXX/XXXXX/XXXXXX'
+       }
+     }
+    
+     stage('User') {
+      steps {
+        sh 'whoami'
+          }
+       } 
+    
+     stage('Install TF Dependencies') {
+      steps {
+        sh "sudo  apt install wget zip python-pip -y"
+        sh "cd /tmp"
+        sh "curl -o terraform.zip https://releases.hashicorp.com/terraform/0.12.5/terraform_0.12.5_linux_amd64.zip"
+        sh "unzip -o terraform.zip"
+        sh "sudo mv terraform /usr/bin"
+        sh "rm -rf terraform.zip"
+          }       
+       }
+    
+     stage('Terraform Version') {
+      steps {
+        sh "sudo terraform -version"
+         }
+      }
+
+     stage('Initialise Terraform') {
+      steps {
+        dir("Project/EB/Wrapper") {
+        sh "sudo terraform init"
+        }   
+       }
+     }
+    
+     stage('Terraform Plan') {
+      steps {
+        dir("Project/EB/Wrapper") {
+        sh "sudo terraform plan"
+           }   
+         }
+    }
+      stage('Terraform Apply') {
+      steps {
+        dir("Project/EB/Wrapper") {
+        sh "sudo terraform apply -input=false -auto-approve"
+           }   
+         }
+    }
+    }
+     post {
+       success {
+           echo " Status: PIPELINE ${currentBuild.result} | Job: ${env.JOB_NAME} | Build number ${env.BUILD_NUMBER}"
+               }
+       failure {
+           echo " Status: PIPELINE ${currentBuild.result} | Job: ${env.JOB_NAME} | Build number ${env.BUILD_NUMBER}"
+               }
+       aborted {
+           echo " Status: PIPELINE ${currentBuild.result} | Job: ${env.JOB_NAME} | Build number ${env.BUILD_NUMBER}"
+              }
+         }
+}

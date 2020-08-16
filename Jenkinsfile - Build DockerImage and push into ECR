@@ -1,0 +1,63 @@
+
+
+pipeline {
+    agent any
+
+   stages {
+
+     stage('Pull content') {
+      steps {
+      echo "DEPLOYING Code| Job: ${env.JOB_NAME} | Build number ${env.BUILD_NUMBER}"
+      git 'git@bitbucket.org:/XXX/XXXXXXX'
+       }
+     }
+    
+     stage('Build Image') {
+      steps {
+       sh "sudo docker build -t myapp . "
+       sh "sudo docker tag myapp:latest XXXXXXXXXXXX.dkr.ecr.us-east-1.amazonaws.com/myapp:latest"
+            }
+        }
+        
+     stage("ECR Login") {
+      steps {
+        withAWS(credentials:'ECRrepo') {
+          script {
+                 def login = ecrLogin()
+                 sh "sudo ${login}"
+                 }
+              }
+            }
+     }
+     stage('Push image') {
+      steps {
+        sh 'sudo apt install -y awscli'
+        sh 'sudo docker push XXXXXXXXXXXX.dkr.ecr.us-east-1.amazonaws.com/myapp:latest'
+        }
+    }   
+     stage('Upload S3') {
+      steps {
+        echo 'Uploading'
+        sh 'aws s3 cp /var/lib/jenkins/workspace/myapp/Dockerrun.aws.json s3://s3-elasticbeanstalk2/${PROJECT_NAME}-${GIT_BRANCH}-${BUILD_NUMBER}.zip --acl public-read-write --region us-east-1'
+            }
+        } 
+      stage('Deploy') {
+       steps {
+         echo 'Deploying'
+          sh 'aws elasticbeanstalk create-application-version --region us-east-1 --application-name  testapp1 --version-label ${PROJECT_NAME}-${BUILD_NUMBER} --source-bundle S3Bucket="s3-elasticbeanstalk2",S3Key="${PROJECT_NAME}-${GIT_BRANCH}-${BUILD_NUMBER}.zip"' 
+          sh 'aws elasticbeanstalk update-environment --region us-east-1 --environment-name testapp1-env --version-label ${PROJECT_NAME}-${BUILD_NUMBER}'
+            }
+        }    
+}
+     post {
+      success {
+        echo " Status: PIPELINE ${currentBuild.result} | Job: ${env.JOB_NAME} | Build number ${env.BUILD_NUMBER}"
+            }
+      failure {
+        echo " Status: PIPELINE ${currentBuild.result} | Job: ${env.JOB_NAME} | Build number ${env.BUILD_NUMBER}"
+             }
+      aborted {
+        echo " Status: PIPELINE ${currentBuild.result} | Job: ${env.JOB_NAME} | Build number ${env.BUILD_NUMBER}"
+            }
+         }
+}
