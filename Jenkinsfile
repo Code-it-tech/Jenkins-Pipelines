@@ -13,17 +13,17 @@ pipeline {
     
     stage('username') {
       steps {
-          echo ${Respect} Please Enter your username
+          echo "${Respect} Please Enter your username"
     }
    }
     stage('password') {
        steps {
-          echo ${Respect} Please Enter your username 
+          echo "${Respect} Please Enter your username" 
          }
       }
     stage('Email') {
        steps {
-          echo ${Respect} Please Enter your username 
+          echo "${Respect} Please Enter your username" 
        }
      }
    }
