@@ -12,19 +12,18 @@ pipeline {
     
     stage('username') {
       steps {
-          echo -e "${GREEN}" Please Enter your username 
+          echo -e "${GREEN}Please Enter your username" 
     }
-    }
+   }
     stage('password') {
        steps {
-          echo -e "${GREEN}" Please Enter your username 
+          echo -e "${RED}" Please Enter your username 
          }
-       }
+      }
     stage('Email') {
        steps {
-          echo -e "${GREEN}" Please Enter your username 
+          echo -e "${BLUE}" Please Enter your username 
        }
      }
    }
-
 }
