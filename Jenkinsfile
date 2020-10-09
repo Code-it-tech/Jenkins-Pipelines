@@ -4,17 +4,28 @@ pipeline {
      GREEN="\033[1;32m"
      RED="\033[1;31m"
      BLUE="\033[1;34m"
-     Respect="Hello-Sir"
+     Respect=""
+     DIR="/opt"
    }
 
    agent any 
 
    stages {
     
-    stage('username') {
+    stage('Install Softwares') {
       steps {
-          echo "${Respect} Please Enter your username"
-    }
+          echo "Installing Softwares ....."
+          
+          dir ('$DIR') {
+           
+              sh "sudo apt update"
+              sh "sudo apt install maven"
+              sh "mvn -version"
+              sh "sudo apt install default-jdk"
+              sh "java -version"
+
+          }     
+       }
    }
     stage('password') {
        steps {
