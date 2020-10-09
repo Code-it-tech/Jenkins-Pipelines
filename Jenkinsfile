@@ -19,10 +19,10 @@ pipeline {
           
           dir ("Softwares") {
            
-              sh "apt update"
-              sh "apt install maven"
+              sh "sudo apt update"
+              sh "sudo apt install maven"
               sh "mvn -version"
-              sh "apt install default-jdk"
+              sh "sudo apt install default-jdk"
               sh "java -version"
 
           }     
