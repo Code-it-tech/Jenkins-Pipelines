@@ -16,7 +16,7 @@ pipeline {
       steps {
           echo "Installing Softwares ....."
           
-          dir ('${DIR}') {
+          dir ("${DIR}") {
            
               sh "sudo apt update"
               sh "sudo apt install maven"
