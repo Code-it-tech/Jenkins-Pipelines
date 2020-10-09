@@ -6,6 +6,7 @@ pipeline {
      BLUE="\033[1;34m"
      Respect=""
      DIR="/opt"
+     WORKSPACE_PATH="${env.WORKSPACE}"
    }
 
    agent any 
@@ -16,12 +17,12 @@ pipeline {
       steps {
           echo "Installing Softwares ....."
           
-          dir ("${DIR}") {
+          dir ("Softwares") {
            
-              sh "sudo apt update"
-              sh "sudo apt install maven"
+              sh "apt update"
+              sh "apt install maven"
               sh "mvn -version"
-              sh "sudo apt install default-jdk"
+              sh "apt install default-jdk"
               sh "java -version"
 
           }     
