@@ -1,21 +1,28 @@
 pipeline {
 
    agent any 
+
+   enviornment {
+   GREEN="\033[1;32m"
+   RED="\033[1;31m"
+   BLUE="\033[1;34m"
+   }
+
    stages {
     
     stage("username") {
      steps {
-      sh " echo -e \e[1;35m Please Enter your username  \e[0m  "
+      sh " echo -e "${GREEN} Please Enter your username " "
     }
     }
     stage("password") {
      steps {
-      sh " echo -e \e[1;35m Please Enter your username  \e[0m  "
+      sh " echo -e "${RED} Please Enter your password " "
          }
        }
     stage("Email") {
      steps {
-      sh " echo -e \e[1;35m Please Enter your username  \e[0m  "
+      sh " echo -e "${BLUE} Please Enter your Email address " "
        }
      }
    }
