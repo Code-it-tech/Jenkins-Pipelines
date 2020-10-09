@@ -29,7 +29,7 @@ pipeline {
    }
     stage('password') {
        steps {
-          echo -e "${GREEN} Please Enter your username" 
+          echo "${Respect} Please Enter your username" 
          }
       }
     stage('Email') {
