@@ -18,7 +18,7 @@ pipeline {
    }
     stage('password') {
        steps {
-          echo "${GREEN} Please Enter your username" 
+          echo -e "${GREEN} Please Enter your username" 
          }
       }
     stage('Email') {
