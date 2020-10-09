@@ -4,7 +4,7 @@ pipeline {
      GREEN="\033[1;32m"
      RED="\033[1;31m"
      BLUE="\033[1;34m"
-     Respect=""
+     Respect="Hi!"
      DIR="/opt"
      WORKSPACE_PATH="${env.WORKSPACE}"
    }
