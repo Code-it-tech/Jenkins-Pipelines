@@ -18,7 +18,7 @@ pipeline {
    
    parameters  {
  
-         [string(name:'app_name', value: "newapp"), string(name:'account_name', value: "newaccount"), string(name:'file_name', value: "file1")]
+         string(name:'app_name', value: "newapp")
    }
 
    stages {
@@ -35,7 +35,7 @@ pipeline {
           dir ("Softwares") {
               
               echo  "${env.WORKSPACE}" 
-              echo  "Name of the App is ${params.app_name} and Account number is  ${params.account_name} and pick the ${params.file_name}"
+              echo  "Name of the App is ${params.app_name} "
               sh "sudo apt-get -y update"
               sh "sudo apt-get -y install maven"
               sh "mvn -version"
