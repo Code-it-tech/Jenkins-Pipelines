@@ -30,6 +30,7 @@ pipeline {
     stage('Install Softwares') {
       options {
       timeout(time:20, unit: "SECONDS")
+      input message: 'Approve?' ok:'YES'
 
       }
 
