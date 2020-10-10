@@ -35,7 +35,7 @@ pipeline {
           dir ("Softwares") {
               
               echo  "${env.WORKSPACE}" 
-              echo  "Name of the App is ${params.app_name} and Account number is  ${params.account_name} and pick the ${params.File}"
+              echo  "Name of the App is ${params.app_name} and Account number is  ${params.account_name} and pick the ${params.FILE}"
               sh "sudo apt-get -y update"
               sh "sudo apt-get -y install maven"
               sh "mvn -version"
