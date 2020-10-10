@@ -13,7 +13,7 @@ pipeline {
 
    options {
       timestamps()
-      ansiColor("xterm")
+      
 
    } 
 
@@ -28,8 +28,9 @@ pipeline {
       steps {
           echo "Installing Softwares ....."
           
-          dir ("Softwares") {
-           
+          dir ("Softwares")
+              
+              sh 'printf "\\e[31mSome code compilation here...\\e[0m\\n"' {
               sh "sudo apt-get -y update"
               sh "sudo apt-get -y install maven"
               sh "mvn -version"
