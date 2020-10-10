@@ -19,7 +19,7 @@ pipeline {
     
     stage('Install Softwares') {
       options {
-      timeout(time:8, unit: "SECONDS")
+      timeout(time:2, unit: "SECONDS")
 
       }
 
