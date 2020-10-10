@@ -18,7 +18,7 @@ pipeline {
    
    parameters  {
  
-         string(name:'app_name', value: "newapp")
+         string(name:'app_name', defaultValue: "newapp")
    }
 
    stages {
