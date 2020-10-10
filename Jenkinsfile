@@ -16,7 +16,14 @@ pipeline {
       timestamps()
      } 
    
-   parameters :  [string(name:'app_name', defaultValue: "newapp"), string(name:'app_name2', defaultValue: "newapp2")]
+   parameters {
+
+      string(name:'app_name', defaultValue: "newapp")
+      string(name:'account_name', defaultValue: "newapp2")
+      string(name:'region', defaultValue: "newapp2")
+      choice(name: 'region', choices: ['us-east-1', 'us-east-4', 'us-east-3'])
+      
+   }  
 
 
    stages {
