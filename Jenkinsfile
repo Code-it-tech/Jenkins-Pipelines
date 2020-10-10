@@ -16,10 +16,8 @@ pipeline {
       timestamps()
      } 
    
-   parameters  {
- 
-         [string(name:'app_name', defaultValue: "newapp"), string(name:'app_name2', defaultValue: "newapp2")]
-   }
+   parameters :  [string(name:'app_name', defaultValue: "newapp"), string(name:'app_name2', defaultValue: "newapp2")]
+
 
    stages {
     
