@@ -7,6 +7,7 @@ pipeline {
      Respect="Please Enter your"
      DIR="/opt"
      WORKSPACE_PATH="${env.WORKSPACE}"
+     
    }
 
    agent any
@@ -28,7 +29,7 @@ pipeline {
           
           dir ("Softwares") {
               
-              sh 'printf "\\e[31mSome code compilation here...\\e[0m\\n"'
+              sh printf "${WORKSPACE}"
               sh "sudo apt-get -y update"
               sh "sudo apt-get -y install maven"
               sh "mvn -version"
@@ -40,12 +41,12 @@ pipeline {
    }
     stage('password') {
        steps {
-          echo "${Respect}  username" 
+          echo "${BUILD_TAG}  username" 
          }
       }
     stage('Email') {
        steps {
-          echo "${Respect}  username" 
+          echo "${BUILD_TAG}  username" 
        }
      }
    }
