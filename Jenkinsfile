@@ -4,7 +4,6 @@ pipeline {
      GREEN="\033[1;32m"
      RED="\033[1;31m"
      BLUE="\033[1;34m"
-     Respect="Please Enter your"
      DIR="/opt"
      WORKSPACE_PATH="${env.WORKSPACE}"
      
@@ -20,7 +19,7 @@ pipeline {
     
     stage('Install Softwares') {
       options {
-      timeout(time:2, unit: "SECONDS")
+      timeout(time:20, unit: "SECONDS")
 
       }
 
@@ -29,7 +28,7 @@ pipeline {
           
           dir ("Softwares") {
               
-              echo  "${WORKSPACE}" 
+              echo  "${env.WORKSPACE}" 
               sh "sudo apt-get -y update"
               sh "sudo apt-get -y install maven"
               sh "mvn -version"
@@ -41,7 +40,7 @@ pipeline {
    }
     stage('password') {
        steps {
-          echo "${BUILD_TAG}  username" 
+          echo "${env.BUILD_TAG}  username" 
          }
       }
     stage('Email') {
