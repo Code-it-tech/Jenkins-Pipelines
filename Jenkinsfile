@@ -20,7 +20,7 @@ pipeline {
 
       string(name:'app_name', defaultValue: "newapp")
       string(name:'account_name', defaultValue: "newapp2")
-      choice(name: 'region', choices: ['us-east-1', 'us-east-2', 'us-east-3'])
+      choice(name:'region', choices: ['us-east-1', 'us-east-2', 'us-east-3'])
       
    }  
 
