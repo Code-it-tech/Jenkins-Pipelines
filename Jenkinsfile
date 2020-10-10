@@ -18,7 +18,7 @@ pipeline {
    
    parameters  {
  
-         [ string(name:'app_name', value: "newapp"), string(name:'account_name', value: "newaccount"), string(name:'FILE', value: "${FILE}") ]
+         [ string(name:'app_name', value: "newapp"), string(name:'account_name', value: "newaccount"), string(name:'File_name', value: "${FILE}") ]
    }
 
    stages {
