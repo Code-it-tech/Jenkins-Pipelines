@@ -29,7 +29,7 @@ pipeline {
           
           dir ("Softwares") {
               
-              sh printf "${WORKSPACE}"
+              sh "printf "${WORKSPACE}" "
               sh "sudo apt-get -y update"
               sh "sudo apt-get -y install maven"
               sh "mvn -version"
