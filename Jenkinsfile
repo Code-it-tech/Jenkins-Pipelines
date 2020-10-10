@@ -6,6 +6,7 @@ pipeline {
      BLUE="\033[1;34m"
      DIR="/opt"
      WORKSPACE_PATH="${env.WORKSPACE}"
+     FILE="file"
      
    }
 
@@ -14,6 +15,11 @@ pipeline {
    options {
       timestamps()
      } 
+   
+   parameters  {
+ 
+         [ string( name:'app_name', value: 'newapp' ) , string( name:'account_name', value: 'newaccount' ) , string( name:'FILE', value: '${FILE}' ) ]
+   }
 
    stages {
     
@@ -29,6 +35,7 @@ pipeline {
           dir ("Softwares") {
               
               echo  "${env.WORKSPACE}" 
+              echo  Name of the App is "${params.app_name}" and Account nuber is  "${params.account_name}"and pick the  "${params.File}"
               sh "sudo apt-get -y update"
               sh "sudo apt-get -y install maven"
               sh "mvn -version"
