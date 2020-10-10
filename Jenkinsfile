@@ -4,16 +4,27 @@ pipeline {
      GREEN="\033[1;32m"
      RED="\033[1;31m"
      BLUE="\033[1;34m"
-     Respect="Hi!"
+     Respect="Please Enter your"
      DIR="/opt"
      WORKSPACE_PATH="${env.WORKSPACE}"
    }
 
-   agent any 
+   agent any
+
+   options {
+      timestamps()
+      ansiColor("xterm")
+
+   } 
 
    stages {
     
     stage('Install Softwares') {
+      options {
+      timeout(time:20, unit: "SECONDS")
+
+      }
+
       steps {
           echo "Installing Softwares ....."
           
@@ -30,12 +41,12 @@ pipeline {
    }
     stage('password') {
        steps {
-          echo "${Respect} Please Enter your username" 
+          echo "${Respect}  username" 
          }
       }
     stage('Email') {
        steps {
-          echo "${Respect} Please Enter your username" 
+          echo "${Respect}  username" 
        }
      }
    }
