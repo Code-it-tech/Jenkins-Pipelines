@@ -6,7 +6,7 @@ pipeline {
      BLUE="\033[1;34m"
      DIR="/opt"
      WORKSPACE_PATH="${env.WORKSPACE}"
-     FILE="file"
+     
      
    }
 
