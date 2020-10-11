@@ -16,7 +16,7 @@ sudo add-apt-repository \
 sudo apt-get update
 sudo apt-get install -y docker-ce
 sudo docker run hello-world
-sudo systemctl enable docker
+sudo systemctl start docker
 echo $?
 exit 1
 
