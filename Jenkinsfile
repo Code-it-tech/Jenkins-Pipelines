@@ -26,10 +26,7 @@ pipeline {
     
     stage('Information') {
        
-       input {
-         message: "Should we continue?"
-         ok: "Yes"
-             }
+       input 'Shall we start this Pipeline ?'
          steps {
           echo  "I am Performing Tasks on ${env.BRANCH_NAME} and in ${params.account_name} Account in ${params.aws_region} Region" 
           echo  "Name of the App is ${params.app_name}"
