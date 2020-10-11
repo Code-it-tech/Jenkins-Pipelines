@@ -25,6 +25,7 @@ pipeline {
    stages {
     
     stage('Information') {
+       timeout(time: 10, unit: 'SECONDS')
        input {
                 message "Should we continue?"
                 ok "Yes, we should."
