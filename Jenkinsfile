@@ -8,7 +8,11 @@ pipeline {
     
     stage('test') {
       steps {
-          sh 'node --version'
+          sh "apt-get update"
+          curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+          sh "apt-get install apt-transport-https ca-certificates curl software-properties-common"
+          sh "add-apt-repository deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+          sh "node --version"
     }
    }
   }
