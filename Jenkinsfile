@@ -27,12 +27,8 @@ pipeline {
     stage('Information') {
        
        input {
-         message "Should we continue?"
-         ok "Yes, we should."
-         submitter "alice,bob"
-           parameters {
-              string(name: 'PERSON', defaultValue: 'Mr Jenkins')
-               }
+         message: "Should we continue?"
+         ok: "Yes"
          }
          steps {
           echo  "I am Performing Tasks on ${env.BRANCH_NAME} and in ${params.account_name} Account in ${params.aws_region} Region" 
