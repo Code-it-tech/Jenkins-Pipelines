@@ -25,7 +25,7 @@ pipeline {
    stages {
     
     stage('Information') {
-       steps {
+       
        input {
          message "Should we continue?"
          ok "Yes, we should."
@@ -34,9 +34,11 @@ pipeline {
               string(name: 'PERSON', defaultValue: 'Mr Jenkins')
                }
          }
+         steps {
           echo  "I am Performing Tasks on ${env.BRANCH_NAME} and in ${params.account_name} Account in ${params.aws_region} Region" 
           echo  "Name of the App is ${params.app_name}"
        }
+    }
     stage('Install Softwares') {
       options {
         timeout(time:20, unit: "SECONDS")
