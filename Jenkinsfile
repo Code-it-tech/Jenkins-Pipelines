@@ -6,7 +6,7 @@ pipeline {
     
     stage('Install Docker') {
        when {
-          branch 'Branch3'      
+          branch 'Branch2'      
          }
        steps {
            sh "chmod +x docker.sh"
