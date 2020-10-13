@@ -6,8 +6,8 @@ pipeline {
     
     stage('Install Docker') {
 
-          sh "chmod +x docker.sh"
-          sh "./docker.sh"
+           sh "chmod +x docker.sh"
+           sh "./docker.sh"
           
     }
    }
