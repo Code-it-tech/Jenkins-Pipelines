@@ -18,7 +18,7 @@ pipeline {
                 
             }
            steps {
-                 sh 'node --version'
+                 sh 'sudo node --version'
                }
         }
     }
