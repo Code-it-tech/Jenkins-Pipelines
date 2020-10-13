@@ -18,9 +18,9 @@ pipeline {
                 
             }
            steps {
-                 sh 'cd /var/run'
-                 sh 'chmod 666 /var/run/docker.sock'
-                 sh 'sudo node --version'r
+                 sh "cd /var/run"
+                 sh "chmod 666 /var/run/docker.sock"
+                 sh "sudo node --version"
                }
         }
     }
