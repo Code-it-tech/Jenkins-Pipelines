@@ -17,7 +17,7 @@ pipeline {
 
       string(name:'app_name', defaultValue: "newapp")
       string(name:'account_name', defaultValue: "1234567890")
-      string(name:'aws_service', defaultValue: "Elasticbeanstalk")
+      string(name:'aws_service', defaultValue: "Elasticbeanstalks")
       choice(name:'aws_region', choices: ['us-east-1', 'us-east-2', 'us-east-3'])
       
               }  
