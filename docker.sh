@@ -17,5 +17,6 @@ sudo apt-get update
 sudo apt-get install -y docker-ce
 sudo docker run hello-world
 sudo systemctl start docker
+sudo chmod 666 /var/run/docker.sock
 
 
