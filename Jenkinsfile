@@ -17,7 +17,7 @@ pipeline {
                 ok "Yes, we should."  
             }
            steps {
-                 sh "sudo node --version"
+                 sh "node --version"
                }
         }
     }
