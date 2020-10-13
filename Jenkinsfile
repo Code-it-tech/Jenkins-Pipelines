@@ -8,7 +8,7 @@ pipeline {
       steps {
           sh "chmod +x docker.sh"
           sh "./docker.sh"
-          exit 1
+          
     }
    }
   }
